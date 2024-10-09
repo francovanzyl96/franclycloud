@@ -1,0 +1,2 @@
+variables:
+  srcRootFolder: $(Build.SourcesDirectory)/securing_aca_example/containerappsenvironment

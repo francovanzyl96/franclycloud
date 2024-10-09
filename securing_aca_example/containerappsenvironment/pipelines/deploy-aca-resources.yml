@@ -1,0 +1,64 @@
+name: deploy-aca-resources
+
+parameters:
+  - name: environment
+    displayName: Choose the environment to deploy
+    type: string
+    default: dev
+  - name: whatIf
+    type: boolean
+    default: true
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - template: ../variables/global.yml
+  - template: ../variables/env-${{ parameters.environment }}.yml
+
+stages:
+  - stage: Deployment
+    displayName: Deploy Biceps
+    jobs:
+      - job:
+        displayName: Bicep deployment
+        steps:
+
+          - task: AzurePowerShell@5
+            displayName: Test bicep
+            inputs:
+              azurePowerShellVersion: LatestVersion
+              azureSubscription: $(serviceConnectionName)
+              pwsh: true
+              ScriptType: InlineScript
+              Inline: |
+                $Parameters = @{
+                  ResourceGroupName = "$(resourceGroupName)"
+                  TemplateFile = "$(srcRootFolder)/scripts/main.bicep"
+                  environment = "${{ parameters.environment }}"
+                  Verbose = $True
+                }
+
+                Test-AzResourceGroupDeployment @Parameters
+
+          - task: AzurePowerShell@5
+            displayName: Deploy bicep
+            inputs:
+              azurePowerShellVersion: LatestVersion
+              azureSubscription: $(serviceConnectionName)
+              pwsh: true
+              ScriptType: InlineScript
+              Inline: |
+
+                $Parameters = @{
+                  Name = "Deployment-$(build.buildId)"
+                  ResourceGroupName = "$(resourceGroupName)"
+                  TemplateFile = "$(srcRootFolder)/scripts/main.bicep"
+                  environment = "${{ parameters.environment }}"
+                  Verbose = $True
+                  WhatIf = $${{ parameters.whatIf }}
+                }
+
+                New-AzResourceGroupDeployment @Parameters

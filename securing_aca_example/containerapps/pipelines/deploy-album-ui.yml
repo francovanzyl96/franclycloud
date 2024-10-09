@@ -1,0 +1,72 @@
+name: deploy-album-ui
+
+parameters:
+  - name: environment
+    displayName: Choose the environment to deploy
+    type: string
+    default: dev
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - template: ../variables/env-${{ parameters.environment }}.yml
+  - name: dockerfile
+    value: "$(Build.SourcesDirectory)/src/album-ui/src/Dockerfile"
+  - name: containerName
+    value: "album-ui"
+
+stages:
+    - stage: Build
+      displayName: Build stage
+      jobs:
+        - job: Build
+          displayName: Build and push job
+          steps:
+            - task: Docker@2
+              displayName: Login to ACR
+              inputs:
+                command: login
+                containerRegistry: ${{ variables.containerRegistryConnection }}
+
+            - task: Docker@2
+              displayName: Build image
+              inputs:
+                command: build
+                repository: "${{ variables.repository }}/${{ variables.containerName }}"
+                dockerfile: ${{ variables.dockerfile }}
+                tags: $(Build.BuildId)
+
+            - task: Docker@2
+              displayName: Push image
+              inputs:
+                command: push
+                repository: "${{ variables.repository }}/${{ variables.containerName }}"
+                tags: $(Build.BuildId)
+
+    - stage: Deploy
+      displayName: Deploy to containerapp
+      jobs:
+        - job: Deploy
+          steps:
+            - task: AzurePowerShell@5
+              displayName: Deploy bicep
+              inputs:
+                azurePowerShellVersion: LatestVersion
+                azureSubscription: ${{ variables.serviceConnectionName }}
+                pwsh: true
+                ScriptType: InlineScript
+                Inline: |
+
+                  $Parameters = @{
+                    Name = "Deployment-$(Build.BuildId)"
+                    ResourceGroupName = "$(resourceGroupName)"
+                    TemplateFile = "$(srcRootFolder)/main.bicep"
+                    env = "${{ parameters.environment }}"
+                    imageBuild = "${{ variables.acrName }}.azurecr.io/${{ variables.repository }}/${{ variables.containerName }}:$(Build.BuildId)"
+                    containerName = "${{ variables.containerName }}"
+                    Verbose = $True
+                  }
+                  New-AzResourceGroupDeployment @Parameters

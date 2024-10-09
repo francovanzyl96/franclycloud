@@ -1,0 +1,64 @@
+{
+    "global": {},
+    "dev": {
+        "tags": {
+            "Owner": "FVZ",
+            "CostCenter": "12345",
+            "Environment": "Non-Prod",
+            "ApplicationName": "cae",
+            "Criticality": "Low",
+            "Company": "FVZ"
+        },
+        "location": "swedencentral",
+        "keyVault": {
+            "name": "kev-sdc-fvz-cae-np",
+            "resourceGroupName": "rg-sdc-fvz-ops-cae-np",
+            "subnetResourceId": "/"
+        },
+        "logging": {
+            "resourceGroupName": "rg-sdc-fvz-ops-cae-np",
+            "logAnalytics": {
+                "name": "law-sdc-fvz-cae-np",
+                "dailyQuotaGb": 2,
+                "retentionInDays": 30
+            },
+            "ApplicationInsights": {
+                "name": "ai-sdc-fvz-cae-np",
+                "retentionInDays": 30,
+                "dailyQuotaGb": 2
+            }
+        },
+        "containerRegistry": {
+            "name": "acrsdcfvzcaenp",
+            "resourceGroupName": "rg-sdc-fvz-ops-cae-np",
+            "sku": "Premium",
+            "subnetResourceId": "",
+            "quarantinePolicyStatus": "disabled"
+        },
+        "managedEnvironment": {
+            "name": "ace-sdc-fvz-cae-d",
+            "subnetName": "snt-sdc-fvz-net-cae-d",
+            "vnetName": "vnt-sdc-fvz-net-cae-np",
+            "vnetResourceGroup": "rg-sdc-fvz-net-cae-np",
+            "internalLoadBalancer": true,
+            "privateDnsZone": true,
+            "workloadProfiles": [
+                {
+                    "name": "Consumption",
+                    "workloadProfileType": "Consumption"
+                }
+            ]
+        },
+        "privateDnsZone": {
+            "subscriptionId": "",
+            "resourceGroupName": "rg-global-fvz-dns-con",
+            "linkedVnets": [
+                {
+                    "subscriptionId": "fa766ef6-938f-40c2-b48e-836941e0ead6",
+                    "resourceGroupName": "rg-sdc-fvz-net-con",
+                    "vnetName": "vnt-sdc-fvz-net-con"
+                }
+            ]
+        }
+    }
+}

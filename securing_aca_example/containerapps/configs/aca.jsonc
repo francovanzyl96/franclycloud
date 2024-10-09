@@ -1,0 +1,102 @@
+{
+
+    "global": {},
+    "dev": {
+        "containerAppDeployment": {
+            "album-api": {
+                "name": "aca-we-fvz-albumapi-01",
+                "acrName": "acrwefvzcaenp",
+                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
+                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "revisionMode": "Single",
+                "secrets": [],
+                "allowedOrigins": [],
+                "containerCpuCoreCount": "1.0",
+                "containerMemory": "2Gi",
+                "containerMinReplicas": 1,
+                "containerMaxReplicas": 1,
+                "env": [],
+                "probes": [],
+                "external": true,
+                "targetPort": 8080
+            },
+            "album-ui": {
+                "name": "aca-we-fvz-albumui-01",
+                "acrName": "acrwefvzcaenp",
+                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
+                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "revisionMode": "Single",
+                "secrets": [],
+                "allowedOrigins": [],
+                "containerCpuCoreCount": "1.0",
+                "containerMemory": "2Gi",
+                "containerMinReplicas": 1,
+                "containerMaxReplicas": 1,
+                "env": [
+                    {
+                        "name": "API_BASE_URL",
+                        "value": "https://aca-we-fvz-albumapi-01.blackmoss-4cf78f8a.westeurope.azurecontainerapps.io"
+                    }
+                ],
+                "external": true,
+                "targetPort": 3000
+            },
+            "secretref-example": {
+                "name": "aca-we-fvz-secretref-01",
+                "acrName": "acrwefvzcaenp",
+                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
+                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "revisionMode": "Single",
+                "secrets": [
+                    {
+                        "name": "secret-name",
+                        "keyVaultUrl": "https://kev-we-fvz-cae-np.vault.azure.net/secrets/SECRET-NAME",
+                        "identity": "/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d"
+                    }
+                ],
+                "allowedOrigins": [],
+                "containerCpuCoreCount": "1.0",
+                "containerMemory": "2Gi",
+                "containerMinReplicas": 1,
+                "containerMaxReplicas": 1,
+                "env": [
+                    {
+                        "name": "SECRET_NAME",
+                        "secretRef": "secret-name"
+                    }
+                ],
+                "external": true,
+                "targetPort": 3000
+            },
+            "volumemount-example": {
+                "name": "aca-we-fvz-volumemount-01",
+                "acrName": "acrwefvzcaenp",
+                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
+                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "revisionMode": "Single",
+                "secrets": [],
+                "allowedOrigins": [],
+                "containerCpuCoreCount": "1.0",
+                "containerMemory": "2Gi",
+                "containerMinReplicas": 1,
+                "containerMaxReplicas": 1,
+                "env": [],
+                "volumeMounts": [
+                    {
+                      "mountPath": "/myfiles",
+                      "volumeName": "azure-files-volume"
+                    }
+                ],
+                "volumes": [
+                    {
+                      "name": "azure-files-volume",
+                      "storageType": "AzureFile",
+                      "storageName": "myazurefiles"
+                    }
+                ],
+                "external": true,
+                "targetPort": 3000
+            }
+        }
+    }
+}
