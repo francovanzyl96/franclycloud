@@ -2,44 +2,42 @@
     "global": {},
     "dev": {
         "tags": {
-            "Owner": "FVZ",
+            "Owner": "<Owner>",
             "CostCenter": "12345",
             "Environment": "Non-Prod",
             "ApplicationName": "cae",
             "Criticality": "Low",
-            "Company": "FVZ"
+            "Company": "<Company>"
         },
         "location": "swedencentral",
         "keyVault": {
-            "name": "kev-sdc-fvz-cae-np",
-            "resourceGroupName": "rg-sdc-fvz-ops-cae-np",
-            "subnetResourceId": "/"
+            "name": "<keyVaultName>",
+            "resourceGroupName": "<keyVaultResourceGroup>",
+            "subnetResourceId": "<yourSubnetId>"
         },
         "logging": {
-            "resourceGroupName": "rg-sdc-fvz-ops-cae-np",
+            "resourceGroupName": "<LogAnalyticsResourceGroup>",
             "logAnalytics": {
-                "name": "law-sdc-fvz-cae-np",
+                "name": "<LogAnalyticsName>",
                 "dailyQuotaGb": 2,
                 "retentionInDays": 30
             },
             "ApplicationInsights": {
-                "name": "ai-sdc-fvz-cae-np",
+                "name": "<AppInsightsName>",
                 "retentionInDays": 30,
                 "dailyQuotaGb": 2
             }
         },
         "containerRegistry": {
-            "name": "acrsdcfvzcaenp",
-            "resourceGroupName": "rg-sdc-fvz-ops-cae-np",
+            "name": "<ACRName>",
+            "resourceGroupName": "<yourACRResourceGroupName>",
             "sku": "Premium",
-            "subnetResourceId": "",
+            "subnetResourceId": "<yourSubnetId>",
             "quarantinePolicyStatus": "disabled"
         },
         "managedEnvironment": {
-            "name": "ace-sdc-fvz-cae-d",
-            "subnetName": "snt-sdc-fvz-net-cae-d",
-            "vnetName": "vnt-sdc-fvz-net-cae-np",
-            "vnetResourceGroup": "rg-sdc-fvz-net-cae-np",
+            "name": "<managedEnvironmentName>",
+            "subnetResourceId": "<yourSubnetId>",
             "internalLoadBalancer": true,
             "privateDnsZone": true,
             "workloadProfiles": [
@@ -50,13 +48,13 @@
             ]
         },
         "privateDnsZone": {
-            "subscriptionId": "",
-            "resourceGroupName": "rg-global-fvz-dns-con",
+            "subscriptionId": "<yourSubscriptionId>",
+            "resourceGroupName": "<yourDnsResourceGroupName>",
             "linkedVnets": [
                 {
-                    "subscriptionId": "fa766ef6-938f-40c2-b48e-836941e0ead6",
-                    "resourceGroupName": "rg-sdc-fvz-net-con",
-                    "vnetName": "vnt-sdc-fvz-net-con"
+                    "subscriptionId": "<yourSubscriptionId>",
+                    "resourceGroupName": "<yourHubNetworkResourceGroupName>",
+                    "vnetName": "<yourHubVnetName>"
                 }
             ]
         }

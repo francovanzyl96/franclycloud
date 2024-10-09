@@ -1,7 +1,7 @@
 variables:
-  serviceConnectionName: spn-fvz-ado-cae-np
-  acrName: acrwefvzcaenp
-  containerRegistryConnection: spn-fvz-ado-cae-acr-np
-  resourceGroupName: rg-we-fvz-cae-d
+  serviceConnectionName: <Azure DevOps Service Connection Name>
+  acrName: <Azure Container Registry Name>
+  containerRegistryConnection: <Azure DevOps Docker Service Connection>
+  resourceGroupName: <Container Apps Environment Resource Group>
   srcRootFolder: $(Build.SourcesDirectory)/securing_aca_example/containerapps
-  repository: fvz-images-d
+  repository: <ACR repo name>

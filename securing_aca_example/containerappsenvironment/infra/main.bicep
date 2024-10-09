@@ -97,7 +97,7 @@ module managedEnvironment 'br/public:avm/res/app/managed-environment:0.8.0' = {
     name: managedEnvironmentObject.name
     // Non-required parameters
     infrastructureResourceGroupName: '${resourceGroup().name}-ace-infra'
-    infrastructureSubnetId: resourceId(managedEnvironmentObject.vnetResourceGroup, 'Microsoft.Network/virtualNetworks/subnets', managedEnvironmentObject.vnetName, managedEnvironmentObject.subnetName)
+    infrastructureSubnetId: managedEnvironmentObject.subnetResourceId
     internal: true
     location: config.location
     tags: config.tags

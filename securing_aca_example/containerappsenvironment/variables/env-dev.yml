@@ -1,3 +1,3 @@
 variables:
-  serviceConnectionName: spn-fvz-ado-cae-np
-  resourceGroupName: rg-we-fvz-cae-d
+  serviceConnectionName: <DevOps Service Connection Name>
+  resourceGroupName: <Container Apps Environment Resource Group Name>

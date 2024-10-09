@@ -4,10 +4,10 @@
     "dev": {
         "containerAppDeployment": {
             "album-api": {
-                "name": "aca-we-fvz-albumapi-01",
-                "acrName": "acrwefvzcaenp",
-                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
-                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "name": "<ContainerAppName>",
+                "acrName": "<ACRName>",
+                "managedEnvironmentId":"<ContainerAppsManagedEnvResourceId>",
+                "userAssignedIdentityId":"<UserAssignedManagedIdResourceId>",
                 "revisionMode": "Single",
                 "secrets": [],
                 "allowedOrigins": [],
@@ -21,10 +21,10 @@
                 "targetPort": 8080
             },
             "album-ui": {
-                "name": "aca-we-fvz-albumui-01",
-                "acrName": "acrwefvzcaenp",
-                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
-                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "name": "<ContainerAppName>",
+                "acrName": "<ACRName>",
+                "managedEnvironmentId":"<ContainerAppsManagedEnvResourceId>",
+                "userAssignedIdentityId":"<UserAssignedManagedIdResourceId>",
                 "revisionMode": "Single",
                 "secrets": [],
                 "allowedOrigins": [],
@@ -35,23 +35,23 @@
                 "env": [
                     {
                         "name": "API_BASE_URL",
-                        "value": "https://aca-we-fvz-albumapi-01.blackmoss-4cf78f8a.westeurope.azurecontainerapps.io"
+                        "value": "<FQDN of API container app>"
                     }
                 ],
                 "external": true,
                 "targetPort": 3000
             },
             "secretref-example": {
-                "name": "aca-we-fvz-secretref-01",
-                "acrName": "acrwefvzcaenp",
-                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
-                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "name": "<ContainerAppName>",
+                "acrName": "<ACRName>",
+                "managedEnvironmentId":"<ContainerAppsManagedEnvResourceId>",
+                "userAssignedIdentityId":"<UserAssignedManagedIdResourceId>",
                 "revisionMode": "Single",
                 "secrets": [
                     {
                         "name": "secret-name",
-                        "keyVaultUrl": "https://kev-we-fvz-cae-np.vault.azure.net/secrets/SECRET-NAME",
-                        "identity": "/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d"
+                        "keyVaultUrl": "https://<keyVaultName>.vault.azure.net/secrets/SECRET-NAME",
+                        "identity": "<UserAssignedManagedIdResourceId>"
                     }
                 ],
                 "allowedOrigins": [],
@@ -69,10 +69,10 @@
                 "targetPort": 3000
             },
             "volumemount-example": {
-                "name": "aca-we-fvz-volumemount-01",
-                "acrName": "acrwefvzcaenp",
-                "managedEnvironmentId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.App/managedEnvironments/ace-we-fvz-cae-d",
-                "userAssignedIdentityId":"/subscriptions/4067ad60-b6f4-4d4a-9276-01ca49c80a3d/resourceGroups/rg-we-fvz-cae-d/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-ace-we-fvz-cae-d",
+                "name": "<ContainerAppName>",
+                "acrName": "<ACRName>",
+                "managedEnvironmentId":"<ContainerAppsManagedEnvResourceId>",
+                "userAssignedIdentityId":"<UserAssignedManagedIdResourceId>",
                 "revisionMode": "Single",
                 "secrets": [],
                 "allowedOrigins": [],
