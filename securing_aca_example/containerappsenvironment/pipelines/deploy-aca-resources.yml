@@ -36,7 +36,7 @@ stages:
               Inline: |
                 $Parameters = @{
                   ResourceGroupName = "$(resourceGroupName)"
-                  TemplateFile = "$(srcRootFolder)/scripts/main.bicep"
+                  TemplateFile = "$(srcRootFolder)/infra/main.bicep"
                   environment = "${{ parameters.environment }}"
                   Verbose = $True
                 }
@@ -55,7 +55,7 @@ stages:
                 $Parameters = @{
                   Name = "Deployment-$(build.buildId)"
                   ResourceGroupName = "$(resourceGroupName)"
-                  TemplateFile = "$(srcRootFolder)/scripts/main.bicep"
+                  TemplateFile = "$(srcRootFolder)/infra/main.bicep"
                   environment = "${{ parameters.environment }}"
                   Verbose = $True
                   WhatIf = $${{ parameters.whatIf }}
